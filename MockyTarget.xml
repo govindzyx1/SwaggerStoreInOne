@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="MockyTarget">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="JavaScriptError">
+            <Step>
+                <Name>JavaSciptErrorHandling</Name>
+                <Condition/>
+            </Step>
+            <!--  <Condition>(fault.name="AM-ApiKey-Error")</Condition> -->
+            <!-- <Condition>(request.header.key != "26Vc7eTV7yeqCScexGHIf69ih7I0Gy2k")</Condition>-->
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="fault-rule">
+        <Step>
+            <Name>ReturnGenericError</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>JavaScript-2</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>Error404</Name>
+                <Condition>(response.status.code = 404)</Condition>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <Flows/>
+    <HTTPTargetConnection>
+        <Properties>
+            <Property name="success.codes">1xx,2xx,3xx,4xx,503</Property>
+        </Properties>
+        <URL>http://www.mocky.io/v2/5d5a167b300000d868d84cf0</URL>
+    </HTTPTargetConnection>
+</TargetEndpoint>

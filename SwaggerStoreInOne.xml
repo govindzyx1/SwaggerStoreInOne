@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="19" name="SwaggerStoreInOne">
+    <Basepaths>/v1/swaggerstoreinone</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1561287777520</CreatedAt>
+    <CreatedBy>verma.govind92@gmail.com</CreatedBy>
+    <Description>This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.</Description>
+    <DisplayName>SwaggerStoreInOne</DisplayName>
+    <LastModifiedAt>1566185458082</LastModifiedAt>
+    <LastModifiedBy>verma.govind92@gmail.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:4ac7cc198bc222bf29c902ec2333f706c0112c333db4cb2db90c506afb134523e8cdf49b648c3902347101897de6a4604334963a97d198a8b9a22b947798695d</ManifestVersion>
+    <Policies>
+        <Policy>Error404</Policy>
+        <Policy>JavaSciptErrorHandling-1</Policy>
+        <Policy>JavaSciptErrorHandling</Policy>
+        <Policy>JavaScript-1</Policy>
+        <Policy>JavaScript-2</Policy>
+        <Policy>Raise-Fault-1</Policy>
+        <Policy>RaiseFault.ExpiredAccessToken</Policy>
+        <Policy>ReturnGenericError</Policy>
+        <Policy>Verify-API-Key-1</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>openapi://association.json</Resource>
+        <Resource>jsc://JavaScript-1.js</Resource>
+        <Resource>jsc://JavaScript-2.js</Resource>
+        <Resource>jsc://JavaScript-3.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>MockyTarget</TargetEndpoint>
+        <TargetEndpoint>MyTarget-1</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

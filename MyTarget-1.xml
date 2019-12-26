@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="MyTarget-1">
+    <Description/>
+    <Description/>
+    <FaultRules>
+        <FaultRule name="JavaScriptError">
+            <Step>
+                <Name>JavaSciptErrorHandling-1</Name>
+                <Condition/>
+            </Step>
+            <!--  <Condition>(fault.name="AM-ApiKey-Error")</Condition> -->
+            <!-- <Condition>(request.header.key != "26Vc7eTV7yeqCScexGHIf69ih7I0Gy2k")</Condition>-->
+        </FaultRule>
+    </FaultRules>
+    <Flows/>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>http://www.mocky.io/v2/5d0706153000008600051d44</URL>
+    </HTTPTargetConnection>
+</TargetEndpoint>

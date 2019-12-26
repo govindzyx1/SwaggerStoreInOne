@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="invalid_api_key_message">
+            <Step>
+                <Name>RaiseFault.ExpiredAccessToken</Name>
+            </Step>
+            <Condition>(fault.name = "access_token_expired") or (verify-api-key.failed = "true") or (error.status.code = 401) or (fault.name = "FailedToResolveAPIKey") or (request.header.key != "26Vc7eTV7yeqCScexGHIf69ih7I0Gy2k")</Condition>
+            <!--  <Condition>(fault.name="AM-ApiKey-Error")</Condition> -->
+            <!-- <Condition>(request.header.key != "26Vc7eTV7yeqCScexGHIf69ih7I0Gy2k")</Condition>-->
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="fault-rule">
+        <Step>
+            <Name>ReturnGenericError</Name>
+        </Step>
+        <AlwaysEnforce>false</AlwaysEnforce>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Verify-API-Key-1</Name>
+            </Step>
+            <Step>
+                <Name>JavaScript-1</Name>
+            </Step>
+            <Step>
+                <Name>Raise-Fault-1</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="addPet">
+            <Description>Add a new pet to the store</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/pet") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="updatePet">
+            <Description>Update an existing pet</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/pet") and (request.verb = "PUT")</Condition>
+        </Flow>
+        <Flow name="findPetsByStatus">
+            <Description>Finds Pets by status</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/pet/findByStatus") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="findPetsByTags">
+            <Description>Finds Pets by tags</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/pet/findByTags") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="getPetById">
+            <Description>Find pet by ID</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/pet/*") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="updatePetWithForm">
+            <Description>Updates a pet in the store with form data</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/pet/*") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="deletePet">
+            <Description>Deletes a pet</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/pet/*") and (request.verb = "DELETE")</Condition>
+        </Flow>
+        <Flow name="uploadFile">
+            <Description>uploads an image</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/pet/*/uploadImage") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="getInventory">
+            <Description>Returns pet inventories by status</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/store/inventory") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="placeOrder">
+            <Description>Place an order for a pet</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/store/order") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="getOrderById">
+            <Description>Find purchase order by ID</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/store/order/*") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="deleteOrder">
+            <Description>Delete purchase order by ID</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/store/order/*") and (request.verb = "DELETE") and (orderId="1234")</Condition>
+        </Flow>
+        <Flow name="createUser">
+            <Description>Create user</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/user") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="createUsersWithArrayInput">
+            <Description>Creates list of users with given input array</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/user/createWithArray") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="createUsersWithListInput">
+            <Description>Creates list of users with given input array</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/user/createWithList") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="loginUser">
+            <Description>Logs user into the system</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/user/login") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="logoutUser">
+            <Description>Logs out current logged in user session</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/user/logout") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="getUserByName">
+            <Description>Get user by user name</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/user/*") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="updateUser">
+            <Description>Updated user</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/user/*") and (request.verb = "PUT")</Condition>
+        </Flow>
+        <Flow name="deleteUser">
+            <Description>Delete user</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/user/*") and (request.verb = "DELETE")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/v1/swaggerstoreinone</BasePath>
+        <Properties/>
+        <VirtualHost>default</VirtualHost>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="MyRoute">
+        <Condition>(proxy.pathsuffix MatchesPath "/store/order") and (request.verb = "POST")</Condition>
+    </RouteRule>
+    <RouteRule name="default">
+        <TargetEndpoint>MyTarget-1</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>
